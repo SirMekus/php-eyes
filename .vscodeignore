@@ -1,0 +1,9 @@
+.github/**
+.vscode/**
+node_modules/**
+scripts/**
+*.vsix
+.gitignore
+.editorconfig
+CONTRIBUTING.md
+package-lock.json

@@ -1,0 +1,93 @@
+{
+  "name": "php-eyes",
+  "displayName": "PHP Eyes",
+  "description": "Free \"N references\" CodeLens above PHP classes, methods and functions. Works with Intelephense, DEVSENSE or Phpactor, no premium licence needed.",
+  "version": "0.3.0",
+  "publisher": "sirmekus",
+  "author": "SirMekus",
+  "license": "GPL-3.0-only",
+  "icon": "images/icon.png",
+  "homepage": "https://github.com/SirMekus/php-eyes#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SirMekus/php-eyes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SirMekus/php-eyes/issues"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "keywords": [
+    "php",
+    "codelens",
+    "references",
+    "usages",
+    "laravel",
+    "intelephense"
+  ],
+  "galleryBanner": {
+    "color": "#4F5B93",
+    "theme": "dark"
+  },
+  "activationEvents": [
+    "onLanguage:php"
+  ],
+  "main": "./src/extension.js",
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": true
+  },
+  "contributes": {
+    "configuration": {
+      "title": "PHP Eyes",
+      "properties": {
+        "phpEyes.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show reference counts above PHP symbols."
+        },
+        "phpEyes.symbolKinds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["class", "interface", "enum", "method", "function", "property", "constant"]
+          },
+          "default": ["class", "interface", "enum", "method", "function"],
+          "description": "Which kinds of symbols get a reference count."
+        },
+        "phpEyes.showZero": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show '0 references' on unused symbols."
+        },
+        "phpEyes.maxConcurrentLookups": {
+          "type": "integer",
+          "default": 2,
+          "minimum": 1,
+          "description": "How many reference lookups run at once. Takes effect after reloading the window."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "phpEyes.refresh",
+        "title": "PHP Eyes: Recount References"
+      }
+    ]
+  },
+  "scripts": {
+    "check": "node --check src/extension.js",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^4.0.0"
+  }
+}
